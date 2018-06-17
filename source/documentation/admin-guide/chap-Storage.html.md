@@ -40,7 +40,7 @@ oVirt has three types of storage domains:
 
 * **Export Domain:** Export domains are temporary storage repositories that are used to copy and move images between data centers and oVirt environments. Export domains can be used to backup virtual machines. An export domain can be moved between data centers, however, it can only be active in one data center at a time. Export domains can only be NFS-based. Only one export domain can be added to a data center.
 
-    **Note:** The export storage domain is deprecated. Storage data domains can be unattached from a data center and imported to another data center in the same environment, or in a different environment. Virtual machines, floating virtual disk images, and templates can then be uploaded from the imported storage domain to the attached data center. See [Importing Existing Storage Domains](sect-Importing_Existing_Storage_Domains) for information on importing storage domains.
+    **Note:** The export storage domain is deprecated. Storage data domains can be unattached from a data center and imported to another data center in the same environment, or in a different environment. Virtual machines, floating virtual disk images, and templates can then be uploaded from the imported storage domain to the attached data center. See [Importing Existing Storage Domains](#importing-existing-storage-domains) for information on importing storage domains.
 
 **Important:** Only commence configuring and attaching storage for your oVirt environment once you have determined the storage needs of your data center(s).
 
@@ -60,9 +60,9 @@ Virtual machines that share the same storage domain can be migrated between host
 
 ### Preparing NFS Storage
 
-Set up NFS shares that will serve as a data domain and an export domain on a Enterprise Linux 6 server. It is not necessary to create an ISO domain if one was created during the oVirt Engine installation procedure. For more information on the required system users and groups see [System Accounts](appe-System_Accounts).
+Set up NFS shares that will serve as a data domain and an export domain on a Enterprise Linux 6 server. It is not necessary to create an ISO domain if one was created during the oVirt Engine installation procedure. For more information on the required system users and groups see [System Accounts](/documentation/admin-guide/appe-System_Accounts).
 
-**Note:** This procedure includes steps for setting up an export storage domain, which is deprecated. Storage data domains can be unattached from a data center and imported to another data center in the same environment, or in a different environment. Virtual machines, floating virtual disk images, and templates can then be uploaded from the imported storage domain to the attached data center. See [Importing Existing Storage Domains](sect-Importing_Existing_Storage_Domains) for information on importing storage domains.
+**Note:** This procedure includes steps for setting up an export storage domain, which is deprecated. Storage data domains can be unattached from a data center and imported to another data center in the same environment, or in a different environment. Virtual machines, floating virtual disk images, and templates can then be uploaded from the imported storage domain to the attached data center. See [Importing Existing Storage Domains](#importing-existing-storage-domains) for information on importing storage domains.
 
 1. Install nfs-utils, the package that provides NFS tools:
 
@@ -151,7 +151,7 @@ Attach an NFS storage domain to the data center in your oVirt environment. This 
 
 ### Increasing NFS Storage
 
-To increase the amount of NFS storage, you can either create a new storage domain and add it to an existing data center, or increase the available free space on the NFS server. For the former option, see [Attaching NFS Storage](Attaching_NFS_Storage1). The following procedure explains how to increase the available free space on the existing NFS server.
+To increase the amount of NFS storage, you can either create a new storage domain and add it to an existing data center, or increase the available free space on the NFS server. For the former option, see [Attaching NFS Storage](#attaching-nfs-storage). The following procedure explains how to increase the available free space on the existing NFS server.
 
 **Increasing an Existing NFS Storage Domain**
 
@@ -167,7 +167,7 @@ To increase the amount of NFS storage, you can either create a new storage domai
 
 ### Preparing Local Storage
 
-A local storage domain can be set up on a host. When you set up a host to use local storage, the host automatically gets added to a new data center and cluster that no other hosts can be added to. Multiple host clusters require that all hosts have access to all storage domains, which is not possible with local storage. Virtual machines created in a single host cluster cannot be migrated, fenced or scheduled. For more information on the required system users and groups see [System Accounts](appe-System_Accounts).
+A local storage domain can be set up on a host. When you set up a host to use local storage, the host automatically gets added to a new data center and cluster that no other hosts can be added to. Multiple host clusters require that all hosts have access to all storage domains, which is not possible with local storage. Virtual machines created in a single host cluster cannot be migrated, fenced or scheduled. For more information on the required system users and groups see [System Accounts](/documentation/admin-guide/appe-System_Accounts).
 
 **Important:** On oVirt Node, the path used for local storage must be within the /var directory; create the storage directory in the following procedure within `/var`.
 
@@ -454,7 +454,7 @@ The new FCP data domain displays on the **Storage** tab. It will remain with a `
 
 There are multiple ways to increase iSCSI or FCP storage size:
 
-* Create a new storage domain with new LUNs and add it to an existing datacenter. See [Adding iSCSI Storage](Adding_iSCSI_Storage1).
+* Create a new storage domain with new LUNs and add it to an existing datacenter. See [Adding iSCSI Storage](#adding-iscsi-storage).
 
 * Create new LUNs and add them to an existing storage domain.
 
