@@ -19,6 +19,7 @@ The locale settings in the `postgresql.conf` file must be set to `en_US.UTF8`.
 1. Install the PostgreSQL server package:
 
         # yum install postgresql-server
+        # yum install postgresql-contrib
 
 2. Initialize the PostgreSQL database, start the `postgresql` service, and ensure that this service starts on boot:
 
@@ -42,6 +43,7 @@ The locale settings in the `postgresql.conf` file must be set to `en_US.UTF8`.
 6. Connect to the new database and add the `plpgsql` language:
 
         postgres=# \c database_name
+        database_name=# CREATE EXTENSION "uuid-ossp";
         database_name=# CREATE LANGUAGE plpgsql;
 
 7. Ensure the database can be accessed remotely by enabling md5 client authentication. Edit the `/var/lib/pgsql/data/pg_hba.conf` file, and add the following line immediately underneath the line starting with `local` at the bottom of the file, replacing *X.X.X.X* with the IP address of the Engine:
@@ -54,7 +56,15 @@ The locale settings in the `postgresql.conf` file must be set to `en_US.UTF8`.
 
     This example configures the `postgresql` service to listen for connections on all interfaces. You can specify an interface by giving its IP address.
 
-9. Open the default port used for PostgreSQL database connections, and save the updated firewall rules:
+9. Update the PostgreSQL server’s configuration. Edit the `/var/lib/pgsql/data/postgresql.conf` file and add the following lines:
+        autovacuum_vacuum_scale_factor='0.01'
+        autovacuum_analyze_scale_factor='0.075'
+        autovacuum_max_workers='6'
+        maintenance_work_mem='65536'
+        max_connections='150'
+        work_mem='8192'
+
+10. Open the default port used for PostgreSQL database connections, and save the updated firewall rules:
 
         # yum install iptables-services
         # iptables -I INPUT 5 -p tcp --dport 5432 -j ACCEPT
